@@ -10,19 +10,19 @@ class CatalogView(ListView):
 
 
     def get_queryset(self):
-        class = super().get_queryset()
+        queryset = super().get_queryset()
         category_slugs = self.request.GET.getlist('category')
         size_names = self.request.GET.getlist('size')
-        min_price = self.request.GET.getlist('min_price')
-        max_price = self.request.GET.getlist('max_price')
+        min_price = self.request.GET.get('min_price')
+        max_price = self.request.GET.get('max_price')
 
         if category_slugs:
             queryset = queryset.filter(category__slug__in=category_slugs)
 
         if size_names:
             queryset = queryset.filter(
-                Q(sizes__name__in=size_names) & Q(sizes__clothingitemsizes__avalible=True)
-            )
+                Q(sizes__name__in=size_names) & Q(sizes__clothingitemsize__available=True)
+            ).distinct()
 
         if min_price:
             queryset = queryset.filter(price__gte=min_price)
