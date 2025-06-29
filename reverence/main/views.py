@@ -56,7 +56,7 @@ class ClothingItemDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        clothing_item = self.get_object
+        clothing_item = self.get_object()
         available_sizes = ClothingItemSize.objects.filter(clothing_item=clothing_item, 
                                                           available=True)
         context['available_sizes'] = available_sizes
