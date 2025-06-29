@@ -24,17 +24,17 @@ class UserRegistrationForm(UserCreationForm):
         return password2
     
 
-    class UserLoginForm(AuthenticationForm):
-        class Meta:
-            model = User
-            fields = ('email', 'password')
+class UserLoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ('email', 'password')
 
 
-    class UserProfileForm(forms.ModelForm):
-        class Meta:
-            model = User
-            fields = [
-                'first_name', 'last_name', 'middle_name',
-                'city', 'street', 'house_number', 
-                'apartment_number', 'postal_code',
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name', 'last_name', 'middle_name',
+             'city', 'street', 'house_number', 
+            'apartment_number', 'postal_code',
             ]
