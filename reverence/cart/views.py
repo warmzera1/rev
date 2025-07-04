@@ -28,7 +28,7 @@ def cart_add(request, item_id):
         except ClothingItemSize.DoesNotExist:
             return redirect('cart:cart_detail')
     else:
-        available_sizes = clothing_item.size.filter(clothingitemsize__available=True)
+        available_sizes = clothing_item.sizes.filter(clothingitemsize__available=True)
         if available_sizes.exists():
             size_obj = available_sizes.first()
             size = size_obj.name 
